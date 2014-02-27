@@ -1,8 +1,11 @@
 class demo_php {
 
-    package { "php":
+    Package {
         ensure => installed,
         notify => Service["httpd"],
     }
+
+    package { "php": }
+    package { "php-mysql": }
 
 }
