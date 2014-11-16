@@ -32,14 +32,20 @@
         <table class="status">
         <tr><th>Is MySQL Running?</th></tr>
         <tr>
-        <?php
+<?php
 
-            $link = @mysql_connect('localhost', 'root', '');
-            if(!$link) {
-                print '<td class="bad">No</td>';
+            if( function_exists( 'mysql_connect' ) ) {
+
+                $link = mysql_connect('localhost', 'root', '');
+                if(!$link) {
+                    print '<td class="bad">No</td>';
+                } else {
+                    print '<td class="good">Yes!</td>';
+                } 
+
             } else {
-                print '<td class="good">Yes!</td>';
-            } 
+                print '<td class="bad">mysql_connect function missing</td>';
+            }
 
         ?>
         </tr>
