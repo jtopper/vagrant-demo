@@ -1,19 +1,15 @@
 Vagrant.configure("2") do |config|
 
-    # Set up some box defaults.  We're going to use the Puppetlabs
-    # CentOS 6.4 x86_64 base boxe, and give it 1GB RAM
+    # Set up some box defaults.  We're going to use the Puppet Labs
+    # CentOS 6.5 x86_64 base box, and give it 1GB RAM
 
-    box_url = 'http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-%s.box'
-
-    config.vm.box = 'puppet_centos64'
-    config.vm.box_url = sprintf(box_url, 'vbox4210')
+    config.vm.box = 'puppetlabs/centos-6.5-64-puppet'
 
     config.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--memory", "1024"]
     end
 
     config.vm.provider 'vmware_fusion' do |v,override|
-        override.vm.box_url = sprintf(box_url, 'fusion503')
         v.vmx["memsize"] = "1024"
     end
 
