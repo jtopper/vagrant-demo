@@ -1,3 +1,7 @@
+Package { 
+    allow_virtual => false
+}
+
 # On every node...
 
 node default {
