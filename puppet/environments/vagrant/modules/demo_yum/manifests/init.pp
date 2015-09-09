@@ -37,7 +37,7 @@ class demo_yum ( $use_local_mirror = false ) {
     exec { "purge-yum.repos.d":
         command     => "/bin/find /etc/yum.repos.d -type f -delete",
         refreshonly => true,
-        subscribe   => Exec [ "yum-clean" ]
+        subscribe   => Exec["yum-clean"]
     }
 
     notice("Has local mirror: $use_local_mirror")
@@ -51,6 +51,6 @@ class demo_yum ( $use_local_mirror = false ) {
     # Enforce ordering - purge all repos first (because Yumrepo is not an enumerable resource)
     # then configure repos, then consider packages:
 
-    File [ '/etc/yum.conf' ] -> Exec [ 'purge-yum.repos.d' ] -> Yumrepo <| |> -> Package <| |> 
+    File['/etc/yum.conf'] -> Exec['purge-yum.repos.d'] -> Yumrepo<| |> -> Package<| |> 
 
 }

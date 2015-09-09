@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
     # Set up some box defaults.  We're going to use the Puppet Labs
     # CentOS 6.5 x86_64 base box, and give it 1GB RAM
 
-    config.vm.box = 'puppetlabs/centos-6.5-64-puppet'
+    config.vm.box = 'puppetlabs/centos-6.6-64-puppet'
 
     config.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--memory", "1024"]
@@ -41,10 +41,9 @@ Vagrant.configure("2") do |config|
     # Provision the Vagrant box using Puppet.
 
     config.vm.provision "puppet" do |puppet|
-        puppet.manifests_path = "puppet/manifests"
-        puppet.manifest_file  = "site.pp"
-        puppet.module_path    = "puppet/modules"
-        puppet.facter         = puppet_facts
+        puppet.environment_path = "puppet/environments"
+        puppet.environment      = "vagrant"
+        puppet.facter           = puppet_facts
     end
 
 end
