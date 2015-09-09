@@ -6,6 +6,5 @@ class demo_php {
     }
 
     package { "php": }
-    package { "php-mysql": }
 
 }
