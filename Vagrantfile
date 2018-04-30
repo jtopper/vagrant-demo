@@ -37,6 +37,9 @@ Vagrant.configure("2") do |config|
         puppet_facts["has_local_package_mirror"] = "1"
     end
 
+    # Provide a symlink to relocated facter
+
+    config.vm.provision "shell", inline: "ln -s /opt/puppetlabs/facter /etc/puppetlabs/facter"
 
     # Provision the Vagrant box using Puppet.
 
